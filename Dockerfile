@@ -1,5 +1,5 @@
 FROM python:3.7
 COPY ./generator_info /apps
-RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple some-package
+RUN pip install -r requirements.txt
 WORKDIR /apps/generator_info
 CMD ["python","manage.py","runserver","8000"]
