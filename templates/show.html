@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Web Site</title>
+</head>
+<body>
+    <h1>身份证号-车架号 生成器</h1>
+    <ul>
+        {% for item in result %}
+        <li>{{ item.card_num }} - {{ item.vin }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
