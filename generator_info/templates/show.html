@@ -10,5 +10,13 @@
         <li>{{ item.card_num }} - {{ item.vin }}</li>
         {% endfor %}
     </ul>
+    <form method="get" action="">
+        <select name="card_prefix">
+            {% for item in bank_list %}
+            <option value="{{ item.card_prefix }}" {% if item.card_prefix == card_prefix %}selected  =  "selected" {% endif %}>{{ item.card_name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">切换银行</button>
+    </form>
 </body>
 </html>
