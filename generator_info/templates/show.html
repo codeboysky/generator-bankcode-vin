@@ -2,12 +2,72 @@
 <html>
 <head>
     <title>My Web Site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <style>
+        body {
+            font-size: 1rem;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+    flex-wrap: wrap;
+}
+
+.copy-btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem; /* 修改字体大小，让其随设备屏幕大小而改变 */
+    margin: 0.5rem;
+    cursor: pointer;
+    flex-grow: 1; /* 让两个复制按钮均分父元素宽度 */
+    min-width: 50%; /* 设置最小宽度，避免按钮过小 */
+}
+        span {
+            font-size: 1rem; /* 修改字体大小，让其随设备屏幕大小而改变 */
+        }
+
+        @media screen and (max-width: 767px) {
+            /* 屏幕小于767像素时，调整字体大小 */
+            body {
+                font-size: 0.8rem;
+            }
+            span {
+                font-size: 0.8rem;
+            }
+            .copy-btn {
+                font-size: 0.8rem;
+                padding: 0.5rem;
+                margin: 0.3rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>银行卡号-车架号 生成器</h1>
     <ul>
         {% for item in result %}
-        <li>{{ item.card_num }} - {{ item.vin }}</li>
+        <li>
+            <span>{{ item.card_num }}</span>
+            <span>-</span>
+            <span>{{ item.vin }}</span>
+            <button class="copy-card-num-btn copy-btn" data-clipboard-text="{{ item.card_num }}">复制卡号</button>
+            <button class="copy-vin-btn copy-btn" data-clipboard-text="{{ item.vin }}">复制车架号</button>
+        </li>
         {% endfor %}
     </ul>
     <form method="get" action="">
@@ -18,5 +78,17 @@
         </select>
         <button type="submit">切换银行</button>
     </form>
+    <script>
+        $(document).ready(function() {
+            var clipboard1 = new ClipboardJS('.copy-card-num-btn');
+            var clipboard2 = new ClipboardJS('.copy-vin-btn');
+            clipboard1.on('success', function(e) {
+                alert("卡号已复制到剪贴板！");
+            });
+            clipboard2.on('success', function(e) {
+                alert("车架号已复制到剪贴板！");
+            });
+        });
+    </script>
 </body>
 </html>
