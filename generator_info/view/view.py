@@ -3,7 +3,7 @@ from tools import luhn
 
 BANK_LIST = [
     {"card_prefix": "622848", "card_name": "农行"},
-    {"card_prefix": "622848", "card_name": "工行"},
+    {"card_prefix": "622203", "card_name": "工行"},
     {"card_prefix": "621331", "card_name": "中行"},
     {"card_prefix": "622188", "card_name": "邮储"},
 ]
